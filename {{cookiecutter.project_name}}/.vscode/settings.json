@@ -1,0 +1,21 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+    },
+    "python.analysis.autoImportCompletions": true,
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.languageServer": "Pylance",
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.lightbulb.enabled": "on",
+    "autoDocstring.docstringFormat": "numpy",
+}

@@ -1,0 +1,24 @@
+{
+    "author": "Alessandro Sias",
+    "email": "ale.sias@hotmail.it",
+    "author_github_handle": "AleSias87",
+    "project_name": "python-project",
+    "project_slug": "{{ cookiecutter.project_name | slugify(separator='_') }}",
+    "project_description": "A Python project template that uses uv for dependencies management.",
+    "project_version": "0.1.0",
+    "python_version": [
+        "3.11",
+        "3.12",
+        "3.13"
+    ],
+    "document_api": "y",
+    "publish_to_pypi": "n",
+    "open_source_license": [
+        "MIT license",
+        "BSD license",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ],
+    "init_workspace": "y"
+}

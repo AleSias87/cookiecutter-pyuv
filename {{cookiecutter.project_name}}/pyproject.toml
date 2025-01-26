@@ -1,0 +1,121 @@
+[project]
+name = "{{cookiecutter.project_name}}"
+version = "{{cookiecutter.project_version}}"
+description = "{{cookiecutter.project_description}}"
+authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
+readme = "README.md"
+keywords = ["python"]
+requires-python = "=={{cookiecutter.python_version}}.*"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: {{cookiecutter.python_version}}",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+Repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
+Documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.2.0",
+    "pytest-cov>=6.0.0",
+    "tox-uv>=1.11.3",
+    "pylint>=3.3.3",
+    "pyright>=1.1",
+    "ruff>=0.9.1",
+    "mypy>=1.13.0",
+    "black>=24.10.0",
+    "codespell>=2.3.0",
+    "sphinx>=7.3.7",
+    "pydata-sphinx-theme>=0.16.1",
+    "pre-commit>=2.20.0",
+    {% if cookiecutter.document_api == 'y' %}"sphinx-copybutton>=0.5.2"{% endif %}
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+    packages = ["src/{{cookiecutter.project_slug}}"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --import-mode=importlib"
+pythonpath = ["."]
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.pylint.main]
+py-version = "{{cookiecutter.python_version}}"
+
+[tool.pyright]
+pythonVersion = "{{cookiecutter.python_version}}"
+typeCheckingMode = "strict"
+reportCallInDefaultInitializer = "error"
+reportImplicitOverride = "none"
+reportImplicitStringConcatenation = "error"
+reportImportCycles = "error"
+reportMissingSuperCall = "error"
+reportPropertyTypeMismatch = "error"
+reportShadowedImports = "error"
+reportUninitializedInstanceVariable = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportUnusedCallResult = "error"
+exclude = ["docs"]
+
+[tool.ruff]
+line-length = 100
+show-fixes = true
+exclude = ["docs"]
+
+[tool.ruff.lint]
+select = [
+    "YTT",     # flake8-2020
+    "S",       # flake8-bandit
+    "B",       # flake8-bugbear
+    "A",       # flake8-builtins
+    "C4",      # flake8-comprehensions
+    "T10",     # flake8-debugger
+    "SIM",     # flake8-simplify
+    "I",       # isort
+    "C90",     # mccabe
+    "E", "W",  # pycodestyle
+    "F",       # pyflakes
+    "PGH",     # pygrep-hooks
+    "UP",      # pyupgrade
+    "RUF",     # ruff
+    "TRY",     # tryceratops
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.mypy]
+files = ["src/**/*.py", "tests/**/*.py"]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
+
+[tool.black]
+line-length=100
+include = ".pyi?$"
+extend-exclude = """
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+/(
+    docs/
+)/
+"""
