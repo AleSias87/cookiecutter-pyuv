@@ -20,7 +20,7 @@ import sys
 
 
 def _check_project_name() -> None:
-    project_name_regex = r"^[a-zA-Z][-a-zA-Z0-9]+$"
+    project_name_regex = r"^[a-zA-Z][-_a-zA-Z0-9]+$"
     project_name = "{{cookiecutter.project_name}}"
 
     if not re.match(project_name_regex, project_name):

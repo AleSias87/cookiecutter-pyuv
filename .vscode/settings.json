@@ -18,4 +18,5 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.lightbulb.enabled": "on",
     "autoDocstring.docstringFormat": "numpy",
+    "iis.configDir": "",
 }

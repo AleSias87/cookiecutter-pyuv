@@ -22,10 +22,10 @@ def test_bake_project(cookies: Cookies) -> None:
 @pytest.mark.parametrize(
     "extra_content",
     [
-        {"project_name": "project_name_not_valid"},
+        {"project_name": "project_name.not_valid"},
         {"project_name": "3-project-name-not-valid"},
         {"project_slug": "project-slug-not-valid"},
-        {"project_slug": "3_project_name_not_valid"},
+        {"project_slug": "3_project_slug.not_valid"},
     ],
 )
 def test_fails_create_for_invalid_data(cookies: Cookies, extra_content: dict[str, str]) -> None:
